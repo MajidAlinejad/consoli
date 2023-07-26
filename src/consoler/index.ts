@@ -108,13 +108,12 @@ export class Consoler<T extends string> {
   }
   private _getVerboseMode() {
     const { promptMessage, tagsNames } = this._getPromptMessage();
-    const mode = prompt(promptMessage);
+    const mode = prompt(promptMessage)?.toUpperCase();
     const regex = this._getRegex(tagsNames);
     const verboseOptions = mode?.match(regex) as
       | IVerboseMode<T>[]
       | null
       | undefined;
-    console.log(verboseOptions);
     if (verboseOptions) {
       this.verboseMode = verboseOptions;
       return true;
