@@ -9,7 +9,11 @@ interface IConsoler<T = unknown> {
 type IVerboseMode<T> = "ERROR" | "WARN" | "INFO" | "SUCCESS" | T;
 
 type HEX = `#${string}`;
-type ICallback = (type: IVerboseMode<T>, message: unknown) => void;
+type ICallback = (
+  type: IVerboseMode<T>,
+  message: unknown,
+  ...optionalParams: unknown[]
+) => void;
 type Ilog = (message?: unknown, ...optionalParams: unknown[]) => void;
 interface IVerboseTag<T> {
   displayName: T;

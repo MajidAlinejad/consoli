@@ -7,7 +7,7 @@ interface Window {
 const c = new Consoler({
 defaultDeveloperMode: ["SUCCESS"],
 password: "",
-onMessageCallback: (type, message) => console.log(type, message),
+onMessageCallback: (type, ...message) => console.log(type, message),
 tags: [{ displayName: "permissions", color: "#9f00a1" }],
 });
 window.consoler = c;

@@ -46,7 +46,12 @@ export class Consoler<T extends string> {
     const tag = this._searchInLocalVerbose(identifier.toUpperCase());
     tag &&
       this._log(color, "consoler:" + identifier, message, ...optionalParams);
-    tag && this.callbackFunction?.(identifier.toUpperCase(), message);
+    tag &&
+      this.callbackFunction?.(
+        identifier.toUpperCase(),
+        message,
+        ...optionalParams
+      );
   }
   private _getTagsObject(tags: IVerboseTag<T>[]) {
     const tagsFunctions = tags.map((tag) => {
@@ -192,22 +197,22 @@ export class Consoler<T extends string> {
   public log(message?: unknown, ...optionalParams: unknown[]): void {
     const info = this._searchInLocalVerbose("INFO");
     info && this._log("#03a9f4", "consoler:INFO", message, ...optionalParams);
-    info && this.callbackFunction?.("INFO", message);
+    info && this.callbackFunction?.("INFO", message, ...optionalParams);
   }
   public warn(message?: unknown, ...optionalParams: unknown[]): void {
     const warn = this._searchInLocalVerbose("WARN");
     warn && this._log("#ffc107", "consoler:WARN", message, ...optionalParams);
-    warn && this.callbackFunction?.("WARN", message);
+    warn && this.callbackFunction?.("WARN", message, ...optionalParams);
   }
   public error(message?: unknown, ...optionalParams: unknown[]): void {
     const error = this._searchInLocalVerbose("ERROR");
     error && this._log("#f55656", "consoler:ERROR", message, ...optionalParams);
-    error && this.callbackFunction?.("ERROR", message);
+    error && this.callbackFunction?.("ERROR", message, ...optionalParams);
   }
   public success(message?: unknown, ...optionalParams: unknown[]): void {
     const success = this._searchInLocalVerbose("SUCCESS");
     success &&
       this._log("#19c720", "consoler:SUCCESS", message, ...optionalParams);
-    success && this.callbackFunction?.("SUCCESS", message);
+    success && this.callbackFunction?.("SUCCESS", message, ...optionalParams);
   }
 }
