@@ -1,0 +1,33 @@
+name: 🎈 Publish
+on:
+  push:
+    branches:
+      - main
+  pull_request: {}
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  deploy:
+    name: 🚀 Publish
+    runs-on: ubuntu-latest
+    # only build/deploy main branch on pushes
+    if: ${{ (github.ref == 'refs/heads/main') &&
+      github.event_name == 'push' }}
+
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org/
+      - name: 🚀 Deploy Production
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: npm publish && echo ${{ secrets.NPM_GITHUB_TOKEN }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_GITHUB_TOKEN }}

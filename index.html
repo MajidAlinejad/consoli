@@ -1,13 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
   <head>
+    <style>
+      html {
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        font-size: 84px;
+        font-family: monospace;
+      }
+      #app {
+        user-select: none;
+        background: linear-gradient(
+          to right,
+          #7953cd 20%,
+          #00affa 30%,
+          #0190cd 70%,
+          #764ada 80%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-fill-color: transparent;
+        background-size: 500% auto;
+        animation: textShine 5s ease-in-out infinite alternate;
+      }
+      @keyframes textShine {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+    </style>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Consoler</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">Consoler.js</div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

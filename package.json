@@ -1,8 +1,24 @@
 {
   "name": "consoler",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "description": "A fancy console with the capability of use in production mode.",
+  "keywords": [
+    "console","fancy console","consoler","terminal","log","console.log()"
+  ],
+  "homepage": "https://majidalinejad.github.io/Iran-License-Plate/",
+  "repository": "https://github.com/MajidAlinejad/consoler",
+  "bugs": {
+    "url": "https://github.com/MajidAlinejad/consoler/issues",
+    "email": "Alinejad.mj@gmail.com"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Majid Alinejad",
+    "email": "Alinejad.mj@gmail.com",
+    "url": "https://github.com/MajidAlinejad"
+  },
+  "private": false,
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -12,5 +28,10 @@
     "@types/node": "^20.4.4",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
-  }
+  },
+  "main": "dist/IranLicensePlate/index.js",
+  "types": "dist/IranLicensePlate/index.d.ts"
 }
+
+
+

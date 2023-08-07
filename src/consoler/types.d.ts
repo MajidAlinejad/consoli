@@ -22,7 +22,9 @@ interface IVerboseTag<T> {
 
 type ITagFunctions<T> = Record<T, Ilog>;
 interface IConsolerParams<T> {
+  /** use sha256() function in ./helper file. and mek sure you initial it with env variables */
   password: string;
+  nodeEnv: "development" | "production" | string;
   defaultDeveloperMode: IVerboseMode<T>[];
   tags?: IVerboseTag<T>[];
   onMessageCallback?: ICallback;

@@ -1,10 +1,9 @@
-import { isHex } from "./helper";
-
+import { isHex, sha256 } from "./helper";
 export class Consoler<T extends string> {
   private password: string;
   private callbackFunction: ICallback | undefined;
   private verboseMode: IVerboseMode<T>[];
-  private isDevelopment = process.env.NODE_ENV === "development";
+  private isDevelopment: boolean;
   private isDebugModeEnable = !!this._getLocalVerbose();
   public tags: ITagFunctions<T> | undefined;
 
@@ -12,10 +11,12 @@ export class Consoler<T extends string> {
     password,
     defaultDeveloperMode,
     tags,
+    nodeEnv,
     onMessageCallback,
   }: IConsolerParams<T>) {
     this.password = password;
     this.verboseMode = defaultDeveloperMode;
+    this.isDevelopment = nodeEnv === "development";
     this.callbackFunction = onMessageCallback;
     this._setDefaultOptions();
     if (tags) {
@@ -23,7 +24,6 @@ export class Consoler<T extends string> {
       this.tags = tagsObj;
     }
   }
-
   private _log(
     color: string,
     identifier: string,
@@ -46,12 +46,11 @@ export class Consoler<T extends string> {
     const tag = this._searchInLocalVerbose(identifier.toUpperCase());
     tag &&
       this._log(color, "consoler:" + identifier, message, ...optionalParams);
-    tag &&
-      this.callbackFunction?.(
-        identifier.toUpperCase(),
-        message,
-        ...optionalParams
-      );
+    this.callbackFunction?.(
+      identifier.toUpperCase(),
+      message,
+      ...optionalParams
+    );
   }
   private _getTagsObject(tags: IVerboseTag<T>[]) {
     const tagsFunctions = tags.map((tag) => {
@@ -101,14 +100,14 @@ export class Consoler<T extends string> {
       );
     }
   }
-  private _autorizeDeveloper() {
+  private async _autorizeDeveloper() {
     const exceptedPassword = this.password;
     if (this.isDevelopment) {
       return true;
     } else {
-      const pass = prompt("Enter Your Development Password? ");
-      console.log(pass);
-      return pass === exceptedPassword;
+      const pass = prompt("Enter Your Development Password? ") as string;
+      const shasum = await sha256(pass);
+      return shasum === exceptedPassword;
     }
   }
   private _getVerboseMode() {
@@ -184,8 +183,8 @@ export class Consoler<T extends string> {
     this._setLocalVerbose();
     window.location.reload();
   }
-  private _verbose() {
-    const isAuthorized = this._autorizeDeveloper();
+  private async _verbose() {
+    const isAuthorized = await this._autorizeDeveloper();
     if (isAuthorized) {
       console.log("Authorized");
       this._getVerboseMode() ? this._setVerboseAndReload() : null;
@@ -197,22 +196,22 @@ export class Consoler<T extends string> {
   public log(message?: unknown, ...optionalParams: unknown[]): void {
     const info = this._searchInLocalVerbose("INFO");
     info && this._log("#03a9f4", "consoler:INFO", message, ...optionalParams);
-    info && this.callbackFunction?.("INFO", message, ...optionalParams);
+    this.callbackFunction?.("INFO", message, ...optionalParams);
   }
   public warn(message?: unknown, ...optionalParams: unknown[]): void {
     const warn = this._searchInLocalVerbose("WARN");
     warn && this._log("#ffc107", "consoler:WARN", message, ...optionalParams);
-    warn && this.callbackFunction?.("WARN", message, ...optionalParams);
+    this.callbackFunction?.("WARN", message, ...optionalParams);
   }
   public error(message?: unknown, ...optionalParams: unknown[]): void {
     const error = this._searchInLocalVerbose("ERROR");
     error && this._log("#f55656", "consoler:ERROR", message, ...optionalParams);
-    error && this.callbackFunction?.("ERROR", message, ...optionalParams);
+    this.callbackFunction?.("ERROR", message, ...optionalParams);
   }
   public success(message?: unknown, ...optionalParams: unknown[]): void {
     const success = this._searchInLocalVerbose("SUCCESS");
     success &&
       this._log("#19c720", "consoler:SUCCESS", message, ...optionalParams);
-    success && this.callbackFunction?.("SUCCESS", message, ...optionalParams);
+    this.callbackFunction?.("SUCCESS", message, ...optionalParams);
   }
 }
