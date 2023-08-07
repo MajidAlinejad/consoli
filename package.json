@@ -35,6 +35,6 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   },
-  "main": "dist/IranLicensePlate/index.js",
-  "types": "dist/IranLicensePlate/index.d.ts"
+  "main": "dist/consoler/index.js",
+  "types": "dist/consoler/index.d.ts"
 }
