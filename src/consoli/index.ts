@@ -1,5 +1,5 @@
 import { isHex, sha256 } from "./helper";
-export class consoli<T extends string> {
+export class Consoli<T extends string> {
   private password: string;
   private callbackFunction: ICallback<T> | undefined;
   private verboseMode: IVerboseMode<T>[];
@@ -13,7 +13,7 @@ export class consoli<T extends string> {
     tags,
     nodeEnv,
     onMessageCallback,
-  }: IconsoliParams<T>) {
+  }: IConsoliParams<T>) {
     this.password = password;
     this.verboseMode = defaultDeveloperMode;
     this.isDevelopment = nodeEnv === "development";

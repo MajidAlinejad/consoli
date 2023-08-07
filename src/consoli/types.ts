@@ -1,4 +1,4 @@
-interface Iconsoli<T extends string> {
+interface IConsoli<T extends string> {
   log: Ilog;
   warn: Ilog;
   error: Ilog;
@@ -21,7 +21,7 @@ interface IVerboseTag<T> {
 }
 
 type ITagFunctions<T extends string> = Record<T, Ilog>;
-interface IconsoliParams<T> {
+interface IConsoliParams<T> {
   /** use sha256() function in ./helper file. and mek sure you initial it with env variables */
   password: string;
   nodeEnv: "development" | "production" | string;
