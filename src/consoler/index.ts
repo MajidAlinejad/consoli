@@ -1,7 +1,7 @@
 import { isHex, sha256 } from "./helper";
 export class Consoler<T extends string> {
   private password: string;
-  private callbackFunction: ICallback | undefined;
+  private callbackFunction: ICallback<T> | undefined;
   private verboseMode: IVerboseMode<T>[];
   private isDevelopment: boolean;
   private isDebugModeEnable = !!this._getLocalVerbose();
@@ -47,7 +47,7 @@ export class Consoler<T extends string> {
     tag &&
       this._log(color, "consoler:" + identifier, message, ...optionalParams);
     this.callbackFunction?.(
-      identifier.toUpperCase(),
+      identifier.toUpperCase() as IVerboseMode<T>,
       message,
       ...optionalParams
     );
@@ -86,7 +86,6 @@ export class Consoler<T extends string> {
     return { recognizer, style };
   }
   private _setDefaultOptions() {
-    window.verbose = () => this._verbose();
     console.log("verbose now accessable!");
     this._addDefaultValue();
     if (this.isDebugModeEnable) {
@@ -183,7 +182,7 @@ export class Consoler<T extends string> {
     this._setLocalVerbose();
     window.location.reload();
   }
-  private async _verbose() {
+  public async verbose() {
     const isAuthorized = await this._autorizeDeveloper();
     if (isAuthorized) {
       console.log("Authorized");

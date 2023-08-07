@@ -1,4 +1,4 @@
-interface IConsoler<T = unknown> {
+interface IConsoler<T extends string> {
   log: Ilog;
   warn: Ilog;
   error: Ilog;
@@ -9,7 +9,7 @@ interface IConsoler<T = unknown> {
 type IVerboseMode<T> = "ERROR" | "WARN" | "INFO" | "SUCCESS" | T;
 
 type HEX = `#${string}`;
-type ICallback = (
+type ICallback<T> = (
   type: IVerboseMode<T>,
   message: unknown,
   ...optionalParams: unknown[]
@@ -20,16 +20,12 @@ interface IVerboseTag<T> {
   color: HEX;
 }
 
-type ITagFunctions<T> = Record<T, Ilog>;
+type ITagFunctions<T extends string> = Record<T, Ilog>;
 interface IConsolerParams<T> {
   /** use sha256() function in ./helper file. and mek sure you initial it with env variables */
   password: string;
   nodeEnv: "development" | "production" | string;
   defaultDeveloperMode: IVerboseMode<T>[];
   tags?: IVerboseTag<T>[];
-  onMessageCallback?: ICallback;
-}
-
-interface Window {
-  verbose: typeof helpObj;
+  onMessageCallback?: ICallback<T>;
 }

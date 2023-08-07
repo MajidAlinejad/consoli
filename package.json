@@ -4,7 +4,12 @@
   "type": "module",
   "description": "A fancy console with the capability of use in production mode.",
   "keywords": [
-    "console","fancy console","consoler","terminal","log","console.log()"
+    "console",
+    "fancy console",
+    "consoler",
+    "terminal",
+    "log",
+    "console.log()"
   ],
   "homepage": "https://majidalinejad.github.io/Iran-License-Plate/",
   "repository": "https://github.com/MajidAlinejad/consoler",
@@ -21,8 +26,9 @@
   "private": false,
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "buildApp": "tsc && vite build",
+    "preview": "vite preview",
+    "build": "tsc -p ."
   },
   "devDependencies": {
     "@types/node": "^20.4.4",
@@ -32,6 +38,3 @@
   "main": "dist/IranLicensePlate/index.js",
   "types": "dist/IranLicensePlate/index.d.ts"
 }
-
-
-

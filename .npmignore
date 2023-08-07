@@ -1,0 +1,7 @@
+.github
+node_modules
+public
+src
+tsconfig.json
+index.html
+.npmrc
