@@ -1,12 +1,17 @@
-// import { consoli } from "../dist/consoli";
+import { consoli } from "../dist/consoli";
 
-// export const pp = new consoli({
-//   nodeEnv: "majid",
-//   password: "9af15b336e6a9619928537df30b2e6a2376569fcf9d7e773eccede65606529a0",
-//   defaultDeveloperMode: ["SUCCESS"],
-//   onMessageCallback: () => {},
-// });
+export const consoliInstance = new consoli({
+  nodeEnv: import.meta.env.MODE,
+  password: import.meta.env.VITE_CONSOLI,
+  defaultDeveloperMode: ["SUCCESS"],
+  onMessageCallback: () => {},
+  tags: [{ displayName: "myTag", color: "#9f00a1" }],
+});
 
-// pp.log("consoli");
-// //@ts-ignore
-// window.verbose = pp;
+consoliInstance.log("it a log consoli 💎💎");
+consoliInstance.warn("it a warn consoli 🔶🔶");
+consoliInstance.error("it a error consoli 🧯🧯");
+consoliInstance.success("it a success consoli 🔋🔋");
+consoliInstance.tags.myTag("it a my tag consoli 🍇🍇");
+//@ts-ignore
+window.verbose = consoliInstance;
