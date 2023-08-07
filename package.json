@@ -1,20 +1,20 @@
 {
-  "name": "consoler",
+  "name": "consoli",
   "version": "0.0.0",
   "type": "module",
   "description": "A fancy console with the capability of use in production mode.",
   "keywords": [
     "console",
     "fancy console",
-    "consoler",
+    "consoli",
     "terminal",
     "log",
     "console.log()"
   ],
   "homepage": "https://majidalinejad.github.io/Iran-License-Plate/",
-  "repository": "https://github.com/MajidAlinejad/consoler",
+  "repository": "https://github.com/MajidAlinejad/consoli",
   "bugs": {
-    "url": "https://github.com/MajidAlinejad/consoler/issues",
+    "url": "https://github.com/MajidAlinejad/consoli/issues",
     "email": "Alinejad.mj@gmail.com"
   },
   "license": "MIT",
@@ -35,6 +35,6 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   },
-  "main": "dist/consoler/index.js",
-  "types": "dist/consoler/index.d.ts"
+  "main": "dist/consoli/index.js",
+  "types": "dist/consoli/index.d.ts"
 }

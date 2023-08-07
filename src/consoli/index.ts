@@ -1,5 +1,5 @@
 import { isHex, sha256 } from "./helper";
-export class Consoler<T extends string> {
+export class consoli<T extends string> {
   private password: string;
   private callbackFunction: ICallback<T> | undefined;
   private verboseMode: IVerboseMode<T>[];
@@ -13,7 +13,7 @@ export class Consoler<T extends string> {
     tags,
     nodeEnv,
     onMessageCallback,
-  }: IConsolerParams<T>) {
+  }: IconsoliParams<T>) {
     this.password = password;
     this.verboseMode = defaultDeveloperMode;
     this.isDevelopment = nodeEnv === "development";
@@ -45,7 +45,7 @@ export class Consoler<T extends string> {
   ): void {
     const tag = this._searchInLocalVerbose(identifier.toUpperCase());
     tag &&
-      this._log(color, "consoler:" + identifier, message, ...optionalParams);
+      this._log(color, "consoli:" + identifier, message, ...optionalParams);
     this.callbackFunction?.(
       identifier.toUpperCase() as IVerboseMode<T>,
       message,
@@ -194,23 +194,23 @@ export class Consoler<T extends string> {
   //
   public log(message?: unknown, ...optionalParams: unknown[]): void {
     const info = this._searchInLocalVerbose("INFO");
-    info && this._log("#03a9f4", "consoler:INFO", message, ...optionalParams);
+    info && this._log("#03a9f4", "consoli:INFO", message, ...optionalParams);
     this.callbackFunction?.("INFO", message, ...optionalParams);
   }
   public warn(message?: unknown, ...optionalParams: unknown[]): void {
     const warn = this._searchInLocalVerbose("WARN");
-    warn && this._log("#ffc107", "consoler:WARN", message, ...optionalParams);
+    warn && this._log("#ffc107", "consoli:WARN", message, ...optionalParams);
     this.callbackFunction?.("WARN", message, ...optionalParams);
   }
   public error(message?: unknown, ...optionalParams: unknown[]): void {
     const error = this._searchInLocalVerbose("ERROR");
-    error && this._log("#f55656", "consoler:ERROR", message, ...optionalParams);
+    error && this._log("#f55656", "consoli:ERROR", message, ...optionalParams);
     this.callbackFunction?.("ERROR", message, ...optionalParams);
   }
   public success(message?: unknown, ...optionalParams: unknown[]): void {
     const success = this._searchInLocalVerbose("SUCCESS");
     success &&
-      this._log("#19c720", "consoler:SUCCESS", message, ...optionalParams);
+      this._log("#19c720", "consoli:SUCCESS", message, ...optionalParams);
     this.callbackFunction?.("SUCCESS", message, ...optionalParams);
   }
 }

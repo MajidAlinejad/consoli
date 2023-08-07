@@ -1,15 +1,15 @@
 interface Window {
 
-    consoler: IConsoler<"permissions">;
+    consoli: Iconsoli<"permissions">;
 
 }
 
-const c = new Consoler({
+const c = new consoli({
 defaultDeveloperMode: ["SUCCESS"],
 password: "",
 onMessageCallback: (type, ...message) => console.log(type, message),
 tags: [{ displayName: "permissions", color: "#9f00a1" }],
 });
-window.consoler = c;
+window.consoli = c;
 
-consoler.tags?.permissions("hi im permissions");
+consoli.tags?.permissions("hi im permissions");
