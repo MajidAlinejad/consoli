@@ -1,4 +1,36 @@
 import { isHex, sha256 } from "./helper";
+export interface IConsoli<T extends string> {
+  log: Ilog;
+  warn: Ilog;
+  error: Ilog;
+  success: Ilog;
+  tags?: ITagFunctions<T>;
+}
+
+export type IVerboseMode<T> = "ERROR" | "WARN" | "INFO" | "SUCCESS" | T;
+
+export type HEX = `#${string}`;
+export type ICallback<T> = (
+  type: IVerboseMode<T>,
+  message: unknown,
+  ...optionalParams: unknown[]
+) => void;
+export type Ilog = (message?: unknown, ...optionalParams: unknown[]) => void;
+export interface IVerboseTag<T> {
+  displayName: T;
+  color: HEX;
+}
+
+export type ITagFunctions<T extends string> = Record<T, Ilog>;
+export interface IConsoliParams<T> {
+  /** use sha256() function in ./helper file. and mek sure you initial it with env variables */
+  password: string;
+  nodeEnv: "development" | "production" | string;
+  defaultDeveloperMode: IVerboseMode<T>[];
+  tags?: IVerboseTag<T>[];
+  onMessageCallback?: ICallback<T>;
+}
+
 export class Consoli<T extends string> {
   private password: string;
   private callbackFunction: ICallback<T> | undefined;
