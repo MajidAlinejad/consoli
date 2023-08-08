@@ -1,5 +1,5 @@
 {
-  "name": "consoli",
+  "name": "consolijs",
   "version": "0.0.3",
   "type": "module",
   "description": "A fancy console with the capability of use in production mode.",
