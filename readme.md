@@ -62,7 +62,11 @@ window.verbose = async () => {
   await consoli.verbose();
 };
 
-consoli.log("it a log consoli 💎💎")
+consoli.log("it a log consoli 💎💎");
+consoli.warn("it a warn consoli 🔶🔶");
+consoli.error("it a error consoli 🧯🧯");
+consoli.success("it a success consoli 🔋🔋");
+consoli.tags?.myTag("it a my tag consoli 🍇🍇");
 
 ```
 
@@ -86,8 +90,9 @@ verbose()
 
 **And you see :**
 
-<div align="center">
+<div style="display:flex">
   <img src="./images/panel.jpg" alt="consoli" title="consoli"  width="400">
+  <img src="./images/panel2.jpg" alt="consoli" title="consoli"  width="400" height="120">
 </div>
 
 ## Avalilible Params
