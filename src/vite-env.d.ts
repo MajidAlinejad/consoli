@@ -12,3 +12,12 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+interface Window {
+  verbose: () => Promise<void>;
+  consoli: Consoli<"myTag">;
+}
+
+interface globalThis {
+  consoli: Consoli<"myTag">;
+}

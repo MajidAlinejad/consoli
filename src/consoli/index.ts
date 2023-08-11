@@ -1,6 +1,6 @@
 import { isHex, sha256 } from "./helper";
 export class Consoli<T extends string> {
-  private password: string;
+  private secretKey: string;
   private callbackFunction: ICallback<T> | undefined;
   private verboseMode: IVerboseMode<T>[];
   private isDevelopment: boolean;
@@ -8,13 +8,13 @@ export class Consoli<T extends string> {
   public tags: ITagFunctions<T> | undefined;
 
   constructor({
-    password,
+    secretKey,
     defaultDeveloperMode,
     tags,
     nodeEnv,
     onMessageCallback,
   }: IConsoliParams<T>) {
-    this.password = password;
+    this.secretKey = secretKey;
     this.verboseMode = defaultDeveloperMode;
     this.isDevelopment = nodeEnv === "development";
     this.callbackFunction = onMessageCallback;
@@ -86,7 +86,7 @@ export class Consoli<T extends string> {
     return { recognizer, style };
   }
   private _setDefaultOptions() {
-    console.log("verbose now accessable!");
+    console.log("consoli verbose accessable!");
     this._addDefaultValue();
     if (this.isDebugModeEnable) {
       this.verboseMode = this._getLocalVerbose()?.split(
@@ -100,7 +100,7 @@ export class Consoli<T extends string> {
     }
   }
   private async _autorizeDeveloper() {
-    const exceptedPassword = this.password;
+    const exceptedPassword = this.secretKey;
     if (this.isDevelopment) {
       return true;
     } else {
@@ -159,6 +159,10 @@ export class Consoli<T extends string> {
     localStorage.setItem("verbose", this.verboseMode.join(","));
     this.isDebugModeEnable = true;
   }
+  private _removeLocalVerbose() {
+    localStorage.removeItem("verbose");
+    this.isDebugModeEnable = false;
+  }
   private _getLocalVerbose() {
     const localverbose = localStorage.getItem("verbose");
     if (localverbose) {
@@ -186,7 +190,9 @@ export class Consoli<T extends string> {
     const isAuthorized = await this._autorizeDeveloper();
     if (isAuthorized) {
       console.log("Authorized");
-      this._getVerboseMode() ? this._setVerboseAndReload() : null;
+      this._getVerboseMode()
+        ? this._setVerboseAndReload()
+        : this._removeLocalVerbose();
     } else {
       console.log("Not Authorized");
     }
