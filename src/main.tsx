@@ -4,8 +4,8 @@ import App from "./App.tsx";
 import "./index.css";
 
 import { consoli } from "./consoliClient";
-
 window.consoli = consoli;
+
 window.verbose = async () => {
   await consoli.verbose();
 };
