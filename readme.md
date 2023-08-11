@@ -1,15 +1,103 @@
+# Consoli js
+
+![npm](https://img.shields.io/npm/dt/consolijs)
+![GitHub issues](https://img.shields.io/github/issues/MajidAlinejad/consolijs)
+![npm](https://img.shields.io/npm/v/consolijs)
+[![GitHub contributors](https://img.shields.io/github/contributors/MajidAlinejad/consolijs.svg)](https://GitHub.com/MajidAlinejad/consolijs/contributors/)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/MajidAlinejad/consolijs/blob/master/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-orange.svg)](https://github.com/MajidAlinejad/consolijs/compare)
+![GitHub Repo stars](https://img.shields.io/github/stars/MajidAlinejad/consolijs?style=social)
+
+<br />
+<div align="center">
+  <img src="./images/consoli.jpg" alt="consoli" title="consoli"  width="300">
+</div>
+<br />
+<br />
+
+Consoli is a new simple and fancy logger that help you even in production mode.
+
+## Features
+
+- ☑ Typescript.
+- ⭐️ tag property of logs.
+- 👁 see logs even in production.
+- ☄️ Colorize tags.
+
+## Installation
+
+This module is distributed via npm which is bundled with node and should be installed as one of your project's `dependencies`:
+
+```
+npm i consolijs
+```
+
+**🚨This package is standalone and have no any other dependacy.🚨**
+
+## Usage
+
+`consoliClient.ts`
+
+```JSX
+import { Consoli } from "consoli";
+
+export const consoli = new Consoli({
+
+  nodeEnv: import.meta.env.MODE,
+  secretKey: import.meta.env.VITE_CONSOLI,
+  defaultDeveloperMode: ["SUCCESS"],
+  tags: [{ displayName: "myTag", color: "#9f00a1" }],
+
+});
+
+```
+
+`main.ts`
+
+```JSX
+import { consoli } from "./consoliClient";
+
+window.consoli = consoli; // for global usage
+window.verbose = async () => {
+  await consoli.verbose();
+};
+
+consoli.log("it a log consoli 💎💎")
+
+```
+
+`global.d.ts`
+
+```JSX
 interface Window {
-
-    consoli: Iconsoli<"permissions">;
-
+  verbose: () => Promise<void>;
+  consoli: Consoli<"myTag">;
 }
 
-const c = new consoli({
-defaultDeveloperMode: ["SUCCESS"],
-password: "",
-onMessageCallback: (type, ...message) => console.log(type, message),
-tags: [{ displayName: "permissions", color: "#9f00a1" }],
-});
-window.consoli = c;
+```
 
-consoli.tags?.permissions("hi im permissions");
+## Usage in client
+
+**Press F12 , go to consol tab and write:**
+
+```JSX
+verbose()
+```
+
+**And you see :**
+
+<div align="center">
+  <img src="./images/consoli.jpg" alt="consoli" title="consoli"  width="300">
+</div>
+
+## Avalilible Params
+
+| property               | type                      | description                                 |
+| ---------------------- | ------------------------- | ------------------------------------------- |
+| `onMessageCallback`    | `void`                    | callback after get the message.             |
+| `defaultDeveloperMode` | `SUCCESS,INFO,WARN,ERROR` | default enabled options for developer mode. |
+| `tags`                 | `Array of Tags`           | .                                           |
+
+## LICENSE
+
+MIT

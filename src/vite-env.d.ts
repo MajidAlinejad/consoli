@@ -16,7 +16,6 @@ interface ImportMeta {
 interface Window {
   verbose: () => Promise<void>;
   consoli: Consoli<"myTag">;
-  global: globalThis;
 }
 
 interface globalThis {
