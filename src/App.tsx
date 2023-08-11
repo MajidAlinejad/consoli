@@ -4,7 +4,6 @@
 // consoli.success("it a success consoli 🔋🔋");
 // consoli.tags?.myTag("it a my tag consoli 🍇🍇");
 console.log(window.consoli);
-console.log(window.global.consoli);
 function App() {
   return <div></div>;
 }

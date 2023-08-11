@@ -10,7 +10,7 @@
 
 <br />
 <div align="center">
-  <img src="./images/consoli.jpg" alt="consoli" title="consoli"  width="300">
+  <img src="./images/consoli.jpg" alt="consoli" title="consoli"  width="700">
 </div>
 <br />
 <br />
@@ -87,7 +87,7 @@ verbose()
 **And you see :**
 
 <div align="center">
-  <img src="./images/consoli.jpg" alt="consoli" title="consoli"  width="300">
+  <img src="./images/panel.jpg" alt="consoli" title="consoli"  width="400">
 </div>
 
 ## Avalilible Params
