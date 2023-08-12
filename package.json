@@ -1,6 +1,6 @@
 {
   "name": "consolijs",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "type": "module",
   "description": "A fancy console with the capability of use in production mode.",
   "keywords": [
