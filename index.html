@@ -8,10 +8,20 @@
         height: 100vh;
         align-items: center;
         justify-content: center;
-        font-size: 84px;
+        font-size: 16px;
         font-family: monospace;
       }
+      body {
+        width: 85%;
+      }
       #app {
+        display: flex;
+        width: 90%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      h1 {
         user-select: none;
         background: linear-gradient(
           to right,
@@ -20,11 +30,47 @@
           #0190cd 70%,
           #764ada 80%
         );
+        width: 100%;
+        border-bottom: 1px dashed gray;
+        padding-bottom: 8px;
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
         background-size: 500% auto;
         animation: textShine 5s ease-in-out infinite alternate;
+      }
+      span {
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        color: dimgray;
+        font-size: 8px;
+        width: 100%;
+      }
+
+      kbd {
+        -moz-border-radius: 3px;
+        -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+        -webkit-border-radius: 3px;
+        -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+        background-color: #f7f7f7;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+        color: #333;
+        display: inline-block;
+        font-family: monospace, sans-serif;
+        font-size: 100%;
+        line-height: 1.4;
+        margin: 0 0.1em;
+        padding: 0.1em 0.6em;
+        text-shadow: 0 1px 0 #fff;
+      }
+      .code {
+        font-family: monospace;
+        border-radius: 3px;
+        padding: 0.1em 0.6em;
+        margin: 0 0.1em;
+        background-color: #f7f7f7;
       }
       @keyframes textShine {
         0% {
@@ -40,7 +86,15 @@
     <script type="module" crossorigin src="./assets/index-f34fc010.js"></script>
   </head>
   <body>
-    <div id="app">consoli.js</div>
+    <div id="app">
+      <h1>consoli.js</h1>
+
+      <span>
+        open browser developer tool <kbd> f12 key </kbd> and write :
+        <span class="code">verbose()</span>
+        then for password enter : <span class="code">0000</span>.</span
+      >
+    </div>
     <div id="root"></div>
     
   </body>
