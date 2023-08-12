@@ -11,7 +11,7 @@
     "log",
     "console.log()"
   ],
-  "homepage": "https://majidalinejad.github.io/Iran-License-Plate/",
+  "homepage": "https://majidalinejad.github.io/consoli/",
   "repository": "https://github.com/MajidAlinejad/consoli",
   "bugs": {
     "url": "https://github.com/MajidAlinejad/consoli/issues",
@@ -27,14 +27,13 @@
   "scripts": {
     "dev": "vite",
     "tsup": "tsup ",
-    "buildApp": "tsc && vite build",
+    "app": "tsc && vite build --base=./",
     "preview": "vite preview",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {},
   "devDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -43,9 +42,12 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "gh-pages": "^6.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsup": "^7.2.0",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5",
-    "tsup": "^7.2.0"
+    "vite": "^4.4.5"
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs"
