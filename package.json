@@ -27,10 +27,9 @@
   "scripts": {
     "dev": "vite",
     "tsup": "tsup ",
-    "app": "tsc && vite build --base=./",
     "preview": "vite preview",
     "build": "tsc -p .",
-    "deploy": "gh-pages -d build"
+    "deploy": "tsc && vite build --base=./ && gh-pages -d build"
   },
   "dependencies": {},
   "devDependencies": {
